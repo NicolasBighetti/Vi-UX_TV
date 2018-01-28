@@ -7,6 +7,13 @@ h1 {
 	line-height: 26.4px;
 }
 
+.element{
+	border:1px;
+	border-color:'black';
+	width:50%;
+	height:100%;
+}
+
 #menu {
 	padding:0px;
 	margin:0px;
@@ -19,13 +26,6 @@ h1 {
 
 #envoye {
 	display : none;
-}
-
-.element{
-	border:1px;
-	border-color:'black';
-	width:50%;
-	height:100%;
 }
 
 .row{
