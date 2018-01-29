@@ -1,13 +1,13 @@
 var recognition = new webkitSpeechRecognition();
+//No interruption
 recognition.continuous = true;
+//intermediate results
 recognition.interimResults = true;
 
-recognition.detectionCallback = function(data){
-  console.log('not defined');
-};
+recognition.detectionCallback = [];
 
-recognition.setDetectionCallback = function(fct){
-  recognition.detectionCallback = fct;
+recognition.setDetectionCallback = function(keyWord, fct){
+  recognition.detectionCallback[keyWord] = fct;
 }
 
 recognition.onstart = function() {
@@ -25,17 +25,17 @@ recognition.onerror = function(event) {
   }
 };
 recognition.onend = function() {
-  recognizing = false;
-
-  showInfo('');
-
+  //recognizing = false;
 };
 recognition.onresult = function(event) {
   console.log('Recognized : ' + JSON.stringify(event));
   for (var i = event.resultIndex; i < event.results.length; ++i) {
-    var detectedKeyWord += event.results[i][0].transcript;
-
-}
+    //var detectedKeyWord += event.results[i][0].transcript;
+    var word = event.results[i][0].transcript;
+    if(recognition.detectionCallback[word]){
+      recognition.detectionCallback[word]();
+    }
+  }
 };
 
 recognition.start();

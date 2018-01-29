@@ -3,12 +3,13 @@
 <head>
 <title>Page Title</title>
 	<script src="vie_ux.js"></script>
+	<script type="text/javascript" src="ViuxSpeech.js"></script>
 	<link rel="stylesheet" type="text/css" href="vie_ux.css">
 </head>
 <body>
-	<div id="menu" onclick="menuClick()">
+	<div class="col" id="menu">
 		<div class="row">
-			<div class="element" id="topLeft">
+			<div class="element" id="topLeft" onclick="menuClick()">
 				<img src="urgences.png"/>
 				<h1>topLeft</h1>
 			</div>
@@ -28,14 +29,14 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="record" onclick="recordClick()">
 		<img src="parlez.png"/>
 		<h1>record message here</h1>
 		<button type="button">Click Me!</button>
 		<button type="button">Click Me!</button>
 	</div>
-	
+
 	<div id="envoye" onclick="envoyeClick()">
 		<img src="like.png"/>
 		<h1>Message envoyé!</h1>
