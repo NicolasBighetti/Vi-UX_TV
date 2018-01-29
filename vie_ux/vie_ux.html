@@ -7,35 +7,16 @@
 	<link rel="stylesheet" type="text/css" href="vie_ux.css">
 </head>
 <body>
-	<div class="col" id="menu">
-		<div class="row">
-			<div class="element" id="topLeft" onclick="menuClick()">
-				<img src="urgences.png"/>
-				<h1>topLeft</h1>
-			</div>
-			<div class="element" id="topRight">
-				<img src="medical.png"/>
-				<h1>topRight</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="element" id="botLeft">
-				<img src="technicien.png"/>
-				<h1>botLeft</h1>
-			</div>
-			<div class="element" id="botRight">
-				<img src="famille.png"/>
-				<h1>botRight</h1>
-			</div>
-		</div>
+	<div class="col" id="gridDisplay">
+
 	</div>
 
-	<div class="popup" id="record" onclick="recordClick()">
+	<div class="popup" id="contextualPopup" onclick="recordClick()">
 		<div>
-			<img src="parlez.png"/>
-			<h1>record message here</h1>
-			<button type="button">Click Me!</button>
-			<button type="button">Click Me!</button>
+			<img id="contextualIcon" src="parlez.png"/>
+			<h1 id="contextualText">record message here</h1>
+			<button type="contextualKO">Click Me!</button>
+			<button type="contextualOK">Click Me!</button>
 		</div>
 	</div>
 
@@ -45,5 +26,77 @@
 			<h1>Message envoyé!</h1>
 		</div>
 	</div>
+
 </body>
+<script>
+	var dataSource = [
+		{
+			'id':'urgence',
+			'keyword' : 'urgence',
+			'icon' : 'urgences.png',
+			'message' : 'Contact des urgences en cours'
+		},
+		{
+			'id':'famille',
+			'keyword' : 'famille',
+			'icon' : 'famille.png',
+			'message' : 'Contact de la famille en cours'
+		},
+		{
+			'id':'réparation',
+			'keyword' : 'réparation',
+			'icon' : 'technicien.png',
+			'message' : 'Contact du technicien en cours'
+		},
+		{
+			'id':'medical',
+			'keyword' : 'medical',
+			'icon' : 'medical.png',
+			'message' : 'Contact du médecin'
+		},
+	];
+
+	var container = document.getElementById("gridDisplay");
+
+	for(var sqr in dataSource){
+		if(!(sqr%2)){
+			//op
+			rowHead = document.createElement("div");
+			rowHead.className = "row";
+			container.appendChild(rowHead);
+			container = rowHead;
+		}
+		var mainDiv = document.createElement("div");
+		mainDiv.id = dataSource[sqr].id;
+
+		!function outer(sqr){
+			mainDiv.addEventListener('click',function() {
+				document.getElementById('contextualIcon').src = dataSource[sqr].icon;
+				document.getElementById('contextualText').innerHTML = dataSource[sqr].message.toUpperCase();
+				menuClick();
+			});
+		}(sqr);
+
+
+		var img = document.createElement("IMG");
+		img.src = dataSource[sqr].icon;
+		mainDiv.appendChild(img);
+
+		var h = document.createElement('H1');
+		var t = document.createTextNode(dataSource[sqr].keyword.toUpperCase());
+		h.appendChild(t);
+		mainDiv.appendChild(h);
+
+		recognition.setDetectionCallback(dataSource[sqr].keyword, function(){
+			document.getElementById("dataSource[sqr]").click();
+		});
+
+		container.appendChild(mainDiv);
+
+		if(sqr%2){
+			container = document.getElementById('gridDisplay');
+		}
+	}
+
+</script>
 </html>
