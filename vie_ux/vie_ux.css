@@ -28,13 +28,20 @@ body {
 	border:0px;
 }
 
-#record {
+.popup {
+	margin: auto;
+	text-align: center;
+}
+
+
+#record.popup {
 	display : none;
 }
 
-#envoye {
+#envoye.popup {
 	display : none;
 }
+
 .col{
 	display: flex;
 	flex-direction: column;
