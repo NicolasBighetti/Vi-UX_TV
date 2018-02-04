@@ -49,14 +49,24 @@
 			'message' : 'Contact du technicien en cours'
 		},
 		{
-			'id':'medical',
-			'keyword' : 'medical',
+			'id':'médical',
+			'keyword' : 'médical',
 			'icon' : 'medical.png',
 			'message' : 'Contact du médecin'
 		},
 	];
 
 	var container = document.getElementById("gridDisplay");
+
+	var fireEvent = function eventFire(el, etype){
+	  if (el.fireEvent) {
+	    el.fireEvent('on' + etype);
+	  } else {
+	    var evObj = document.createEvent('Events');
+	    evObj.initEvent(etype, true, false);
+	    el.dispatchEvent(evObj);
+	  }
+	}
 
 	for(var sqr in dataSource){
 		if(!(sqr%2)){
@@ -86,10 +96,12 @@
 		var t = document.createTextNode(dataSource[sqr].keyword.toUpperCase());
 		h.appendChild(t);
 		mainDiv.appendChild(h);
-
-		recognition.setDetectionCallback(dataSource[sqr].keyword, function(){
-			document.getElementById("dataSource[sqr]").click();
-		});
+		!function addCallback(sqr){
+			recognition.setDetectionCallback(dataSource[sqr].keyword, function(){
+				var element = document.getElementById(dataSource[sqr].id);
+				element.click();
+			});
+		}(sqr);
 
 		container.appendChild(mainDiv);
 

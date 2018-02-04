@@ -28,10 +28,10 @@ recognition.onend = function() {
   //recognizing = false;
 };
 recognition.onresult = function(event) {
-  console.log('Recognized : ' + JSON.stringify(event));
   for (var i = event.resultIndex; i < event.results.length; ++i) {
     //var detectedKeyWord += event.results[i][0].transcript;
-    var word = event.results[i][0].transcript;
+    console.log('Recognized : ' + JSON.stringify(event.results[i][0].transcript));
+    var word = event.results[i][0].transcript.trim();
     if(recognition.detectionCallback[word]){
       recognition.detectionCallback[word]();
     }
