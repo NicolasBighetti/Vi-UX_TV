@@ -11,16 +11,16 @@
 
 	</div>
 
-	<div class="popup" id="contextualPopup" onclick="recordClick()">
+	<div class="popup" id="contextualPopup">
 		<div>
 			<img id="contextualIcon" src="parlez.png"/>
 			<h1 id="contextualText">record message here</h1>
-			<button type="contextualKO">Click Me!</button>
-			<button type="contextualOK">Click Me!</button>
+			<button type="contextualKO" onclick="envoyeClick()">Arrêter</button>
+			<button type="contextualOK" onclick="recordClick()">Contacter</button>
 		</div>
 	</div>
 
-	<div class="popup" id="envoye" onclick="envoyeClick()">
+	<div class="popup" id="envoye">
 		<div>
 			<img src="like.png"/>
 			<h1>Message envoyé!</h1>

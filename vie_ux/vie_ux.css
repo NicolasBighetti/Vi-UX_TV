@@ -1,6 +1,6 @@
 h1 {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 24px;
+	font-size: 48px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -10,6 +10,11 @@ h1 {
 body {
 	width: 96vw;
 	height: 96vh;
+}
+
+button{
+	border-radius: 28px;
+	font-size: 48px;
 }
 
 .element{
@@ -28,11 +33,15 @@ body {
 	border:0px;
 }
 
-.popup {
+#contextualPopup.popup > div{
 	margin: auto;
 	text-align: center;
+	padding-top: 18%;
 }
 
+#contextualText {
+	margin: 30px 0px 30px 0px;
+}
 
 #contextualPopup.popup {
 	display : none;
@@ -40,6 +49,12 @@ body {
 
 #envoye.popup {
 	display : none;
+}
+
+#envoye.popup > div{
+	margin: auto;
+	text-align: center;
+	padding-top: 18%;
 }
 
 .col{
@@ -55,7 +70,8 @@ body {
 	height: 50%;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;;
+	justify-content: space-around;
+	align-items: center;
 	padding:0px;
 	margin:0px;
 	border:0px;
