@@ -1,5 +1,32 @@
+var synth = window.speechSynthesis;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'fr-FR';
+
+function speak(text){
+    if (synth.speaking) {
+        console.error('speechSynthesis.speaking');
+        return;
+    }
+    if (text !== '') {
+    var utterThis = new SpeechSynthesisUtterance(text);
+    utterThis.onend = function (event) {
+        console.log('SpeechSynthesisUtterance.onend');
+    }
+    utterThis.onerror = function (event) {
+        console.error('SpeechSynthesisUtterance.onerror');
+    }
+    /*var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    for(i = 0; i < voices.length ; i++) {
+      if(voices[i].name === selectedOption) {
+        utterThis.voice = voices[i];
+      }
+    }*/
+    utterThis.pitch = 1;
+    utterThis.rate = 1;
+    synth.speak(utterThis);
+    recognition.start();
+  }
+}
 
 var isPopUpMenu = false;
 //No interruption
@@ -48,11 +75,13 @@ recognition.onresult = function(event) {
       }
     }
   }
+  recognition.stop();
 };
-recognition.start();
 
-setInterval(function(){
+/*setInterval(function(){
   if(!recognizing){
     recognition.start();
   }
-}, 5000);
+}, 5000);*/
+
+speak("Bienvenue");
